@@ -1,5 +1,5 @@
 server:
-  9003
+  port: 8761
 
 eureka:
   client:
@@ -9,3 +9,4 @@ eureka:
     hostname: localhost
   server:
     wait-time-in-ms-when-sync-empty: 0
+

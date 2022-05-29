@@ -1,6 +1,5 @@
 package com.AlgoProject.SellerService.Controller;
 
-
 import com.AlgoProject.SellerService.Entities.Product;
 import com.AlgoProject.SellerService.ExceptionalHandelling.ProductNotFoundException;
 import com.AlgoProject.SellerService.Services.ProductService;
@@ -34,6 +33,7 @@ public class SellerController {
     @Autowired
     private RestTemplate restTemplate;
 
+
     @GetMapping("/product/name={name}")
     public Product findProductByName(@PathVariable String name, Model model, RedirectAttributes redirectAttribute) {
         // Returning product by Name
@@ -47,7 +47,6 @@ public class SellerController {
     {
         logger.info("Adding product",product);
         return  productService.addproduct(product);
-
     }
 
     @PostMapping("/addProductList")
