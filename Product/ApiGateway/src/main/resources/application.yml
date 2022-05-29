@@ -8,18 +8,14 @@ spring:
     gateway:
       routes:
         - id: SellerService
-        uri: lb://SellerService
-        predicates:
+          uri: lb://SellerService
+          predicates:
           - Path=/seller/**
 
         - id: CustomerService
           uri: lb://CustomerService
           predicates:
-            - Path=/customer/**
-
-        - id:
-
-
+          - Path=/customer/**
 
 eureka:
   instance:
