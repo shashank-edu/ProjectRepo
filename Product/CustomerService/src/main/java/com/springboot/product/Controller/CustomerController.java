@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import org.apache.logging.log4j.Logger;
@@ -28,8 +29,12 @@ import java.util.List;
 @RequestMapping("/customer")
 public class CustomerController {
     private static final Logger logger = LogManager.getLogger(CustomerController.class);
+
     @Autowired
     private ProductService productService;
+
+    @Autowired
+    private RestTemplate restTemplate;
 
     @GetMapping("/product/name={name}")
     public Product findProductByName(@PathVariable String name, Model model, RedirectAttributes redirectAttribute) {
@@ -44,7 +49,7 @@ public class CustomerController {
     @GetMapping("/product/type={type}")
     public List<Product> findProductByType(@PathVariable String type, Model model, RedirectAttributes redirectAttribute) {
         // Returning product by Name
-        List<Product> product = productService.getProductsList(type);
+        List<Product> product = productService.getProductsListType(type);
 //        model.addAttribute("product", product);
 //        model.addAttribute("pageTitle", "Edit Product (Name: " + name + ")");
         logger.info("Getting Product by Type",product);
@@ -54,18 +59,13 @@ public class CustomerController {
     @GetMapping("/product/category={category}")
     public List<Product> findProductBycategory(@PathVariable String category, Model model, RedirectAttributes redirectAttribute) {
         // Returning product by Name
-        List<Product> product = productService.getProductsList(category);
+        List<Product> product = productService.getProductsListCategory(category);
 //        model.addAttribute("product", product);
 //        model.addAttribute("pageTitle", "Edit Product (Name: " + name + ")");
         logger.info("Getting Product by category",product);
         return product;
     }
 
-        public List<Product> searchProductByPriceRange(@RequestParam(name = "min") float min,
-                                                   @RequestParam(name = "max") float max, @RequestParam(name = "seller_id") int sellerId) {
-        List<Product> product = productService.getProductsByRange(min, max, sellerId);
-            return  product;
-        }
 
 
 //    @GetMapping("/products")

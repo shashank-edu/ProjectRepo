@@ -119,12 +119,13 @@ public class ProductService {
 //
 //    }
 
-    public List<Product> getProductsList(String type) {
-        return productRepository.findAll(type);
+    public List<Product> getProductsListType(String type) {
+        return productRepository.findAllType(type);
     }
 
-    public List<Product> getProductsByRange(float min, float max, int sellerId) {
-        return productRepository.findByProductsBetween(min,max,sellerId);
-    }
 
+
+    public List<Product> getProductsListCategory(String category) {
+        return productRepository.findAllCategory(category);
+    }
 }
